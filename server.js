@@ -1,9 +1,15 @@
 const express = require("express");
+const router = express.Router();
 
 const app = express();
 
-app.use("/", function (req, res) {
-  res.send("Hola");
+app.use(router);
+
+router.get("/message", function (req, res) {
+  res.send("Lista de mensajes");
+});
+router.post("/message", function (req, res) {
+  res.send("Mensaje anadido");
 });
 
 app.listen(3000);

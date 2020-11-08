@@ -41,3 +41,7 @@ Ahora ya podemos correr el server con
 ```js
   node server
 ```
+
+## Como pueden venir las peticiones
+
+![Captura de pantalla](./.readme-static/peticiones.png)
