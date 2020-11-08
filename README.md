@@ -45,3 +45,39 @@ Ahora ya podemos correr el server con
 ## Como pueden venir las peticiones
 
 ![Captura de pantalla](./.readme-static/peticiones.png)
+
+## Recibir información desde el cliente: Body y Query
+
+```js
+const express = require("express");
+const router = express.Router();
+
+const app = express();
+
+//Aca le pasas el content typq que quieras json, urlencoded, xml
+app.use(express.json()); //Nos permite trabajar con la respuesta del body (obligatorio)
+app.use(express.urlencoded({ extend: false }));
+app.use(router);
+
+router.get("/message", function (req, res) {
+  res.send("Lista de mensajes");
+});
+router.post("/message", function (req, res) {
+  console.log(req.body); // nos trae el body
+  console.log(req.query); // nos trae el query
+  res.send("Mensaje anadido");
+});
+
+app.listen(3000);
+console.log(
+  `La aplicacion funciona en el puerto http://localhost:3000/message`
+);
+```
+
+Luego en insomia o lo que sea que uses le puedes pasar el content type y elquery
+
+![Captura de pantalla](./.readme-static/insomia.png)
+
+Luego en el terminal pueds ver la respuesta
+
+![Captura de pantalla](./.readme-static/terminal.png)
