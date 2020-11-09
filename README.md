@@ -159,3 +159,34 @@ app.use("/app", express.static("public"));
 ahora podemos ver nuestro frontend en
 
 http://localhost:3000/app/
+
+## Errores: Cómo presentarlos e implicaciones en la seguridad
+
+Debemos ser cuidadosos con la informacion que pasamos al cliente
+
+Podemos manejar entre el error que se le muestra al usuario y el error que nos llega a nosotros
+
+Asi, el usuario va a ver el message y nosotros el datail
+server.js
+
+```js
+response.error(
+  req,
+  res,
+  "Error inesperado",
+  500,
+  "Es solo una simulacion de los errrores"
+);
+```
+
+respose.js
+
+```js
+exports.error = function (req, res, message, status, details) {
+  console.error(`[response error] ${details}`);
+  res.status(status || 500).send({
+    error: message,
+    body: "",
+  });
+};
+```
