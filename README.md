@@ -81,3 +81,16 @@ Luego en insomia o lo que sea que uses le puedes pasar el content type y elquery
 Luego en el terminal pueds ver la respuesta
 
 ![Captura de pantalla](./.readme-static/terminal.png)
+
+## Información contextual: Leer las cabeceras
+
+```js
+router.get("/message", function (req, res) {
+  console.log(req.headers);
+  //Agregamos cabeceras personalizadas
+  res.header({
+    "custom-header": "Nuestro valor personalizado",
+  });
+  res.send("Lista de mensajes");
+});
+```

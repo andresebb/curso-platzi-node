@@ -9,8 +9,14 @@ app.use(express.urlencoded({ extend: false }));
 app.use(router);
 
 router.get("/message", function (req, res) {
+  console.log(req.headers);
+  //Agregamos cabeceras personalizadas
+  res.header({
+    "custom-header": "Nuestro valor personalizado 2",
+  });
   res.send("Lista de mensajes");
 });
+
 router.post("/message", function (req, res) {
   console.log(req.body); // nos trae el body
   console.log(req.query); // nos trae el query
