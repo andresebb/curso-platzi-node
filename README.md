@@ -195,6 +195,10 @@ exports.error = function (req, res, message, status, details) {
 
 ![Captura de pantalla](./.readme-static/arquitectura.png)
 
+###### network:
+
+Encarga de recibir la peticion http, procesar toda la informacion y enviarla al controlador
+
 Capa de presentación: la que ve el usuario (también se la denomina «capa de usuario»), Esta capa se comunica únicamente con la capa de negocio. (En este caso, seria el archivo network.js)
 
 Capa de negocio: (En este caso, seria el archivo controller.js) Se denomina capa de negocio (e incluso de lógica del negocio) porque es aquí donde se establecen todas las reglas que deben cumplirse. Esta capa se comunica con la capa de presentación, para recibir las solicitudes y presentar los resultados, y con la capa de datos, para solicitar al gestor de base de datos almacenar o recuperar datos de él.
