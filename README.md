@@ -78,10 +78,6 @@ Luego en insomia o lo que sea que uses le puedes pasar el content type y elquery
 
 ![Captura de pantalla](./.readme-static/insomia.png)
 
-Luego en el terminal pueds ver la respuesta
-
-![Captura de pantalla](./.readme-static/terminal.png)
-
 ## Información contextual: Leer las cabeceras
 
 ```js
@@ -102,9 +98,50 @@ Formas de enviar una respuesta del servidor al cliente: vacia, plana, estructura
 ```js
 router.post("/message", function (req, res) {
   console.log(req.body);
-  console.log(res.query);
+  console.log(req.query);
   // res.send(); respuesta vacia
   // res.status(201).send(`Mensaje anadido correctamente`); // respuesta plana
   res.status(201).send({ error: "", body: "Creado correctamente" }); //respuesta estructurada
+});
+```
+
+## Respuestas coherentes
+
+Colacaremos todas nuestras respuestas en un solo sitio, para eso creamos response.js
+
+```js
+exports.success = function (req, res, message, status) {
+  res.status(status || 200).send({
+    error: "",
+    body: message,
+  });
+};
+exports.error = function (req, res, message, status) {
+  res.status(status || 500).send({
+    error: message,
+    body: "",
+  });
+};
+```
+
+Luego para las llammos cuando necesitemos
+
+server.js
+
+```js
+const response = require("./network/response");
+
+const app = express();
+
+//Aca le pasas el content typq que quieras json, urlencoded, xml
+app.use(express.json()); //Nos permite trabajar con la respuesta del body (obligatorio)
+app.use(express.urlencoded({ extend: false }));
+app.use(router);
+
+router.post("/message", function (req, res) {
+  console.log(req.body);
+  console.log(req.query);
+
+  response.success(req, res, "Mensaje creado correctamente", 201);
 });
 ```
