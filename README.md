@@ -94,3 +94,17 @@ router.get("/message", function (req, res) {
   res.send("Lista de mensajes");
 });
 ```
+
+## Tipos de respuesta: Vacía, plana, con datos y estructurada
+
+Formas de enviar una respuesta del servidor al cliente: vacia, plana, estructurada.
+
+```js
+router.post("/message", function (req, res) {
+  console.log(req.body);
+  console.log(res.query);
+  // res.send(); respuesta vacia
+  // res.status(201).send(`Mensaje anadido correctamente`); // respuesta plana
+  res.status(201).send({ error: "", body: "Creado correctamente" }); //respuesta estructurada
+});
+```

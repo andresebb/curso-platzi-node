@@ -18,9 +18,11 @@ router.get("/message", function (req, res) {
 });
 
 router.post("/message", function (req, res) {
-  console.log(req.body); // nos trae el body
-  console.log(req.query); // nos trae el query
-  res.send("Mensaje anadido");
+  console.log(req.body);
+  console.log(res.query);
+  // res.send(); respuesta vacia
+  // res.status(201).send(`Mensaje anadido correctamente`); // respuesta plana
+  res.status(201).send({ error: "", body: "Creado correctamente" }); //respuesta estructurada
 });
 
 app.listen(3000);
