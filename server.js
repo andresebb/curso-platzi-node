@@ -29,6 +29,8 @@ router.post("/message", function (req, res) {
   }
 });
 
+app.use("/app", express.static("public"));
+
 app.listen(3000);
 console.log(
   `La aplicacion funciona en el puerto http://localhost:3000/message`

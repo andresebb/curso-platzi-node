@@ -145,3 +145,17 @@ router.post("/message", function (req, res) {
   response.success(req, res, "Mensaje creado correctamente", 201);
 });
 ```
+
+## Servir archivos estáticos
+
+Serviremos loso estaticos, html, css, javascript
+
+Para eso usamos el servidor de estaticos de express
+
+```js
+app.use("/app", express.static("public"));
+```
+
+ahora podemos ver nuestro frontend en
+
+http://localhost:3000/app/
