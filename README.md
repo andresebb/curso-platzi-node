@@ -219,4 +219,8 @@ No es una base de datos muy flexible, pero tiene a favor su gran soporte y el en
 
 Son de bases de datos sin una tabla fija como las que sí se encuentran en las bases de datos relacionales, lo que permite una alta escalabilidad en ellas. Además, es abierta y por lo tanto flexible a diferentes tipos de datos y no necesita tantos recursos para ejecutarse; de hecho, el hardware necesario no cuesta mucho.
 
-![captura de pantalla](./readme-static/base.png)
+![captura de pantalla](./.readme-static/base.png)
+
+## MongoDB: Almacenar y leer datos
+
+MongoDb no tiene esquemas pero no es una buena practica trabajar sin esquemas. Porque no sabemos que tipo de informacion va a ver en nuestra base de datos y es muy importante saber que estamos almacenando. Por eso usaremos una librerias llamada MOONGOSE que nos permitira crear esquemas, asi en caso que los datos no sean los correctos no lo guardara en la base de datos
