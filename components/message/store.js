@@ -33,7 +33,18 @@ async function getMessage() {
   return messages;
 }
 
+async function updateText(id, mensaje) {
+  const foundMessage = await Model.findOne({
+    _id: id,
+  });
+
+  foundMessage.message = mensaje;
+  const newMessage = await foundMessage.save();
+  return newMessage;
+}
+
 module.exports = {
   add: addMessage,
   list: getMessage,
+  updateText: updateText,
 };
