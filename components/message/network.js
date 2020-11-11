@@ -5,8 +5,9 @@ const response = require("../../network/response");
 const controller = require("./controller");
 
 router.get("/", function (req, res) {
+  const filterByUser = req.query.user || null;
   controller
-    .getMessages()
+    .getMessages(filterByUser)
     .then((messageList) => {
       response.success(req, res, messageList, 200);
     })
