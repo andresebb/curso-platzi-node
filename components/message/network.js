@@ -43,4 +43,15 @@ router.patch("/:id", function (req, res) {
       response.error(req, res, "Error interno", 500, e);
     });
 });
+
+router.delete("/:id", function (req, res) {
+  controller
+    .deleteMessage(req.params.id)
+    .then((respuesta) => {
+      response.success(req, res, respuesta, 200);
+    })
+    .catch((error) => {
+      response.error(req, res, "Error interno", 500, e);
+    });
+});
 module.exports = router;

@@ -54,8 +54,26 @@ async function updateText(id, mensaje) {
   return newMessage;
 }
 
+async function removeMessage(id) {
+  //Verficamos si le mensaje existe en DB
+  const checkMessage = await Model.exists({
+    _id: id,
+  });
+
+  if (checkMessage === true) {
+    const deletedMessage = await Model.deleteOne({
+      _id: id,
+    });
+
+    return `Mensaje ${id} eliminado correctamente`;
+  } else {
+    return `Mensaje ${id} no existe`;
+  }
+}
+
 module.exports = {
   add: addMessage,
   list: getMessage,
   updateText: updateText,
+  remove: removeMessage,
 };

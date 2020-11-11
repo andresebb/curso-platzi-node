@@ -25,11 +25,22 @@ function getMessages(filterByUser) {
 function updateMessage(id, message) {
   return new Promise(async (resolve, reject) => {
     if (!id || !message) {
-      console.error("[]");
+      console.error("no pasaste id o mensaje");
       return reject("Los datos no son correctos");
     }
 
     const result = await store.updateText(id, message);
+    resolve(result);
+  });
+}
+function deleteMessage(id) {
+  return new Promise(async (resolve, reject) => {
+    if (!id) {
+      console.error("no pasaste id o mensaje");
+      reject("Id invalido");
+    }
+
+    const result = await store.remove(id);
     resolve(result);
   });
 }
@@ -38,4 +49,5 @@ module.exports = {
   addMessage,
   getMessages,
   updateMessage,
+  deleteMessage,
 };
