@@ -4,7 +4,13 @@ const Schema = mongoose.Schema;
 
 //Creamos el schema con mongoose
 const mySchema = new Schema({
-  user: String,
+  //Le decimos que user va a recibir nuestro model de usuario,
+  //El ref: user hace referencia a la collecion, asi se llama en el model de user
+  user: {
+    type: Schema.ObjectId,
+    ref: "user",
+  },
+
   message: {
     type: String,
     required: true,

@@ -6,20 +6,33 @@ function addMessage(message) {
   myMessage.save();
 }
 
-async function getMessage(filterByUser) {
-  let filterUser = {};
-  if (filterByUser !== null) {
-    //Le decimos a mongo que solo nos muestre informacion solo de ese user (si viene alguno)
-    filterUser = { user: filterByUser };
-  }
-  const messages = await Model.find(filterUser);
-  //Verificamos que el usuario exista.
-  if (messages.length !== 0) {
-    return messages;
-  } else {
-    console.log("Usuario no se encuenta en la base de datos");
-    return "Usuario no encontrado";
-  }
+function getMessage(filterByUser) {
+  return new Promise((resolve, reject) => {
+    let filterUser = {};
+    if (filterByUser !== null) {
+      //Le decimos a mongo que solo nos muestre informacion solo de ese user (si viene alguno)
+      filterUser = { user: filterByUser };
+    }
+
+    //populate(campo dentro de la coleccion que quieres); Busca dentro de la DB, los objectId y populated, para eso le decimos cual es el campo
+    Model.find(filterUser)
+      .populate("user")
+      .exec((error, populated) => {
+        if (error) {
+          reject(error);
+        }
+
+        resolve(populated);
+      });
+
+    //Verificamos que el usuario exista.
+    /* if (messages.length !== 0) {
+      resolve(messages);
+    } else {
+      console.log("Usuario no se encuenta en la base de datos");
+      return "Usuario no encontrado";
+    } */
+  });
 }
 
 async function updateText(id, mensaje) {
