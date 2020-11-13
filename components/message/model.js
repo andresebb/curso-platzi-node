@@ -20,6 +20,7 @@ const mySchema = new Schema({
     required: true,
   },
   date: Date,
+  file: String,
 });
 
 //Le pasamos, como se llama la coleccion en mongo ("Message") y el schema ("mySchema").

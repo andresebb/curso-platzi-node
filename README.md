@@ -224,3 +224,26 @@ Son de bases de datos sin una tabla fija como las que sí se encuentran en las b
 ## MongoDB: Almacenar y leer datos
 
 MongoDb no tiene esquemas pero no es una buena practica trabajar sin esquemas. Porque no sabemos que tipo de informacion va a ver en nuestra base de datos y es muy importante saber que estamos almacenando. Por eso usaremos una librerias llamada MOONGOSE que nos permitira crear esquemas, asi en caso que los datos no sean los correctos no lo guardara en la base de datos
+
+## Subiendo archivos con multer
+
+Primero que nada debemos instalar multer
+
+```js
+const path = require("path");
+const multer = require("multer"); //Asi subimos archivos / imagenes a node
+
+//Le decimos a multer en que carpeta va aguardar esos archivos,
+//la otra funcion se encarga de quitarlo de binarios y le guarda con el nombre original
+var storage = multer.diskStorage({
+  destination: "public/files/",
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+
+const upload = multer({ storage: storage });
+
+//Luego cuando se lo pasas
+router.post("/", upload.single("file"), function (req, res) {});
+```
