@@ -1,4 +1,3 @@
-const { get } = require("mongoose");
 const Model = require("./model");
 
 const addUser = async (nameUser) => {

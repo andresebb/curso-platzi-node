@@ -10,6 +10,6 @@ const mySchema = new Schema({
 
 //Le pasamos, como se llama la coleccion en mongo ("Message") y el schema ("mySchema").
 //Asi en la base de datos se guardara cumpliendo las reglas del schema
-const model = mongoose.model("user", mySchema);
+const model = mongoose.model("User", mySchema);
 
 module.exports = model;

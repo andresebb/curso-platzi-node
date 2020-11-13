@@ -15,6 +15,7 @@ function getMessage(filterByUser) {
     }
 
     //populate(campo dentro de la coleccion que quieres); Busca dentro de la DB, los objectId y populated, para eso le decimos cual es el campo
+    //ese user no es el de ref: User, es el de arriba, el papa
     Model.find(filterUser)
       .populate("user")
       .exec((error, populated) => {
