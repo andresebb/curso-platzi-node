@@ -247,3 +247,10 @@ const upload = multer({ storage: storage });
 //Luego cuando se lo pasas
 router.post("/", upload.single("file"), function (req, res) {});
 ```
+
+## WebSockets: Qué son, por qué son interesantes y cómo usarlos
+
+El protocolo Websocket o wss:// crea un túnel de información entre el usuario y el servidor el cual se quedará abierto hasta que el servidor y/o el cliente cierre la conexión para pedir información en tiempo real.
+
+Todas las app en tiempo real, utilizan web Sockets, por ejemplo cuando pides un uber y puedes ver
+como este se mueve en tiempo real, esto es websocket
